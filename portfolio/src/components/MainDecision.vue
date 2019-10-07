@@ -1,15 +1,23 @@
 <template>
-<div id="typewritermsg" class="row align-items-center">
-  <div class="col">
-    <h1 class="typewriter">{{msg}}</h1>
+  <div id="typewritermsg" class="row align-items-center">
+    <div class="col  align-items-center">
+      <h1 class="typewriter">{{msg}}</h1>
+    </div>
   </div>
-</div>
+  <!-- <div v-if="animationFinish" class="row align-items-center">
+    <div class="col">
+        <button type="button" class="btn btn-success"
+        @click="setVisitor(VisitorType.Recruteur)">Recruteur</button>
+        <button type="button" class="btn btn-primary"
+        @click="setVisitor(VisitorType.Sponsor)" >Commanditaire</button>
+    </div>
+  </div>-->
 </template>
 
 <script lang="ts">
 import * as _ from 'lodash';
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { Language } from '../types/Enum';
+import { Language, VisitorType } from '../types/Enum';
 import { launchAndClearInterval } from '@/scripts/Utils/Times';
 
 @Component({
@@ -18,36 +26,23 @@ import { launchAndClearInterval } from '@/scripts/Utils/Times';
 })
 export default class MainDecision extends Vue {
   @Prop({ required: true }) readonly timelaps!: number;
+  @Prop({ required: true }) readonly data!: string[];
+  @Prop({ default: 80 }) readonly clearingDuration!: number;
 
   public msg: string = '';
-  private clearingDuration: number = 80;
-  
+  private animationFinish: boolean = false;
+  private visitor: VisitorType = VisitorType.None;
+
   public mounted() {
-    const welcomestr: string = 'Bonjour et bienvenue mon nom est Jean-david Nelson. Ce site me sert a présenter mes projets dans le cadre d\'un contrat de freelance, ou pour qu\'un recruteur puissent mieux me connaitre :)';
-    this.displaySentence(welcomestr);
+    this.displaySentence(this.data);
   }
-
-  /*
-  private async displaySentence(sentence: string): Promise<void> {
-    let destructuredStr : string[] = sentence.split('');
-    let index: number = 0;
-    let timeoutID: any = null;
-
-    while (index !== destructuredStr.length) {
-      timeoutID = await setTimeout(() => {
-        this.msg += destructuredStr[index];
-      },this.timelaps);
-      clearTimeout(timeoutID);
-      index += 1;
-      console.log("index " + index);
-    }
-  } */
 
   private clearSentence(): void {
     let clearing: any = null;
     
     clearing = setInterval(() => {
       if (this.msg.length === 0 || _.isNil(this.msg)) {
+        this.animationFinish = true;
         clearInterval(clearing);
       } else {
         this.msg = this.msg.slice(0, -1);
@@ -55,22 +50,67 @@ export default class MainDecision extends Vue {
     }, this.clearingDuration);
   }
 
+  private setVisitor(type: VisitorType): void {
+    this.visitor = type;
+  }
   
-  private displaySentence(sentence: string): void {
-    let destructuredStr : string[] = sentence.split('');
-    let index: number = 0;
-    let clearing: any = null;
+  private displaySentence(data: string[], clearing: boolean = true): void {
+    let index: number = ( data.length > 0 ) ? 0 : -1;
+    let chars: string[] | null = ( index === -1 ) ? null : data[0].split('');
+    let clearTime: any = null;
 
-    clearing = setInterval(async () => {
-      this.msg += destructuredStr[index];
-      index += 1;
-      if (index === destructuredStr.length) {        
-        clearInterval(clearing);
-        await setTimeout(() => {
-          this.clearSentence();
-        }, 5000);
+    clearTime = setInterval(async () => {
+      console.log("interval ! Data lenght :" + data.length);
+      if (_.isNil(chars) || _.isNil(this.msg) 
+      || data.length === 0) {
+        console.log("finished !! ");
+        clearInterval(clearTime);
+        return;
+      }
+      if (index !== chars.length) {
+        this.msg += chars[index];
+        index += 1;
+      } else {
+        clearInterval(clearTime);    
+        await this.makePromise(() => {
+          if (clearing) {
+            console.log("clearing !");
+            this.clearSentence();
+          }
+        }, 5000).then(async (reason: any) => {
+          while (this.animationFinish === false) {
+            //console.log("wait");
+            await this.timeout(100);
+          }
+          this.animationFinish = false;
+          let newdata: string[] = _.slice(data,1);
+          console.log("Reponse promise :" + reason);
+          console.log("Nouveau Tableau : ");
+          console.log(newdata);
+          this.displaySentence(newdata, newdata.length > 1 ? true : false);
+        });
       }
     }, this.timelaps);
+  }
+
+  private timeout(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  private async sleep(fn: Function, ...args: any[]) {
+      await this.timeout(3000);
+      return fn(...args);
+  }
+
+  private makePromise(lambda: Function, ms: number): Promise<boolean> {
+    return new Promise((resolve, reject) => setTimeout(() => {
+        try {
+          lambda();
+          resolve(true);
+        } catch(e) {
+          reject(false);
+        }
+      }, ms));
   }
 }
 </script>

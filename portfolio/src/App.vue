@@ -2,7 +2,7 @@
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/> -->
-    <MainDecision timelaps=150 />
+    <MainDecision timelaps=150 v-bind:data="mainData"/>
 
   </div>
 </template>
@@ -22,6 +22,12 @@ import { VisitorType } from '@/types/Enum';
 })
 export default class App extends Vue {
   private decision: VisitorType = VisitorType.None;
+  private mainData: string[] = [
+    'Bonjour et bienvenue, mon nom est NELSON Jean-david.',
+    'Je suis developpeur full stack, je suis un passionné de nouvelles technologies.', 
+    'ce site me sert de vitrine pour plusieurs projets mais aussi de cv.',
+    'J\'aimerais savoir pour quel raison etes vous venu sur ce site ?'
+  ];
 }
 </script>
 
