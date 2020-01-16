@@ -26,7 +26,8 @@ a {
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s; }
-  a:hover, a:active, a:focus {
+
+a:hover, a:active, a:focus {
     color: #2c98f0;
     outline: none;
     text-decoration: none !important; }

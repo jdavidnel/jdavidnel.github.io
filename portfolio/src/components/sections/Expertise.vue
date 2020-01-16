@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-md-12"
         data-animate-effect="fadeInLeft">
-          <span class="heading-meta">What I do?</span>
+          <span class="heading-meta">Qu'est ce que?</span>
           <h2 class="colorlib-heading">Here are some of my expertise</h2>
         </div>
       </div>

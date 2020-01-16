@@ -1,11 +1,9 @@
 <template>
 <div>
- <section class="colorlib-about">
-  <h1>Bonjour, Vous chercher un developpeur ? Ca tombe bien car je suis developpeur freelance.</h1>
- </section>
  <AboutMe />
- <Expertise />
  <Skills /> 
+ <Expertise />
+ <Experiences />
 </div>
 </template>
 
@@ -16,6 +14,7 @@ import AboutMe from '@/components/sections/AboutMe.vue';
 import Expertise from '@/components/sections/Expertise.vue';
 import Skills from '@/components/sections/Skills.vue';
 import MainDecision from '@/components/MainDecision.vue';
+import Experiences from '@/components/sections/Experiences.vue';
 
 @Component({
   components: {
@@ -23,6 +22,7 @@ import MainDecision from '@/components/MainDecision.vue';
     Expertise,
     Skills,
     MainDecision,
+    Experiences,
   },
 })
 export default class MainApp extends Vue {

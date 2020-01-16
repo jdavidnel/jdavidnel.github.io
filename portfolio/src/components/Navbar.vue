@@ -1,15 +1,18 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Jean-David</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
+      </button> -->
       <div class="collapse navbar-collapse" id="navbarNav">
+        <h1 class="navbar-brand" href="#">Jean-David</h1>
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Experiences
+            <a class="nav-link" href="#">Qui suis je ?
               <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Experiences</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Skills</a>
@@ -26,9 +29,6 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Contact</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-          </li>
         </ul>
       </div>
     </nav>
@@ -37,11 +37,12 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 // import translate from 'google-translate-api';
-import { Language } from '../types/Enum';
+import { Language, VisitorType } from '../types/Enum';
 
 @Component
 export default class Navbar extends Vue {
   @Prop({ default: Language.French }) readonly language!: Language;
+  @Prop({ default: VisitorType.Sponsor }) visitor: VisitorType = VisitorType.Sponsor;
 
   //  public translator(str: string): string {
   // let result: string = '';

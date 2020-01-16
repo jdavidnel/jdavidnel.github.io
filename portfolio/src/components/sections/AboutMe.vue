@@ -7,10 +7,15 @@
             <div class="row row-bottom-padded-sm " data-animate-effect="fadeInLeft">
               <div class="col-md-12">
                 <div class="about-desc">
-                  <span class="heading-meta">About Us</span>
-                  <h2 class="colorlib-heading">Who Am I?</h2>
-                  <p><strong>Hi I'm Ja</strong> On her way she met a copy.</p>
-                  <p>line of blind text by the name of Lorem Ipsum decided to leave</p>
+                  <span class="heading-meta">A propos</span>
+                  <h2 class="colorlib-heading">Qui suis je ?</h2>
+                  <p><strong>Bonjour, je suis jean-David Nelson</strong>. Porté sur le développement Mobile, d'application ou web.
+                  je suis passionné par toutes les domaines.
+                  Porté sur le développement Mobile, d'application ou web. je suis passionné par toutes les domaines.
+                  Porté sur le développement Mobile, d'application ou web. je suis passionné par toutes les domaines.
+                  Porté sur le développement Mobile, d'application ou web. je suis passionné par toutes les domaines.
+                  Porté sur le développement Mobile, d'application ou web. je suis passionné par toutes les domaines.</p>
+                  <p>Ayant été formé a devenir expert dans tout les domaine de l'informatique , mes compétences s'étendent sur plusieurs domaines d'activités : </p>
                 </div>
               </div>
             </div>
@@ -18,13 +23,14 @@
               <div class="col-md-3" data-animate-effect="fadeInLeft">
                 <div class="services color-1">
                   <span class="icon2"><i class="icon-bulb"></i></span>
-                  <h3>Graphic Design</h3>
+                  <h3>Business Developpment</h3>
                 </div>
               </div>
               <div class="col-md-3" data-animate-effect="fadeInRight">
                 <div class="services color-2">
-                  <span class="icon2"><i class="icon-globe-outline"></i></span>
-                  <h3>Web Design</h3>
+                  <!-- <span class="icon2"><i class="icon-globe-outline"></i></span> -->
+                  <span class="icon2"><i class="icon-layers2"></i></span>
+                  <h3>Web Front and Back End</h3>
                 </div>
               </div>
               <div class="col-md-3 " data-animate-effect="fadeInTop">

@@ -1,10 +1,17 @@
 <template>
   <div id="typewritermsg" class="row align-items-center">
-    <div class="col  align-items-center">
-      <h1 class="typewriter">{{msg}}</h1>
-    </div>
+      <TypeWriter timelaps=60 v-bind:data="data" />
+      <!--<div v-if="animationFinish" class="row align-items-center">
+        <div class="col">
+            <button type="button" class="btn btn-success"
+            @click="setVisitor(VisitorType.Recruteur)">Recruteur</button>
+            <button type="button" class="btn btn-primary"
+            @click="setVisitor(VisitorType.Sponsor)" >Commanditaire</button>
+        </div> 
+      </div> -->
   </div>
-  <!-- <div v-if="animationFinish" class="row align-items-center">
+
+    <!-- <div v-if="animationFinish" class="row align-items-center">
     <div class="col">
         <button type="button" class="btn btn-success"
         @click="setVisitor(VisitorType.Recruteur)">Recruteur</button>
@@ -19,98 +26,38 @@ import * as _ from 'lodash';
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { Language, VisitorType } from '../types/Enum';
 import { launchAndClearInterval } from '@/scripts/Utils/Times';
+import TypeWriter from '@/components/TypeWriter.vue';
 
 @Component({
   components: {
+    TypeWriter,
   },
 })
 export default class MainDecision extends Vue {
-  @Prop({ required: true }) readonly timelaps!: number;
-  @Prop({ required: true }) readonly data!: string[];
-  @Prop({ default: 80 }) readonly clearingDuration!: number;
 
-  public msg: string = '';
   private animationFinish: boolean = false;
   private visitor: VisitorType = VisitorType.None;
+  /* private data: string[] = [
+    'Bonjour et bienvenue, mon nom est NELSON Jean-david.',
+    'Je suis developpeur full stack, je suis un passionné de nouvelles technologies.', 
+    'ce site me sert de vitrine pour plusieurs projets mais aussi de cv.',
+    'J\'aimerais savoir pour quel raison etes vous venu sur ce site ?'
+  ]; */
+private data: string[] = [
+    'Bonjour et bienvenue sur mon portefolio.',
+    'Mon nom est NELSON Jean-david.',
+    'Ce site me sert de vitrine pour mes differentes realisations et a me présenter.',
+    'J\'espere que vous apprécierez l\'expérience :) . ',
+  ];
 
   public mounted() {
-    this.displaySentence(this.data);
-  }
-
-  private clearSentence(): void {
-    let clearing: any = null;
-    
-    clearing = setInterval(() => {
-      if (this.msg.length === 0 || _.isNil(this.msg)) {
-        this.animationFinish = true;
-        clearInterval(clearing);
-      } else {
-        this.msg = this.msg.slice(0, -1);
-      }
-    }, this.clearingDuration);
+    this.$root.$on("TypeWritter::Animation::End", () => {
+      this.animationFinish = true;
+    });
   }
 
   private setVisitor(type: VisitorType): void {
     this.visitor = type;
-  }
-  
-  private displaySentence(data: string[], clearing: boolean = true): void {
-    let index: number = ( data.length > 0 ) ? 0 : -1;
-    let chars: string[] | null = ( index === -1 ) ? null : data[0].split('');
-    let clearTime: any = null;
-
-    clearTime = setInterval(async () => {
-      console.log("interval ! Data lenght :" + data.length);
-      if (_.isNil(chars) || _.isNil(this.msg) 
-      || data.length === 0) {
-        console.log("finished !! ");
-        clearInterval(clearTime);
-        return;
-      }
-      if (index !== chars.length) {
-        this.msg += chars[index];
-        index += 1;
-      } else {
-        clearInterval(clearTime);    
-        await this.makePromise(() => {
-          if (clearing) {
-            console.log("clearing !");
-            this.clearSentence();
-          }
-        }, 5000).then(async (reason: any) => {
-          while (this.animationFinish === false) {
-            //console.log("wait");
-            await this.timeout(100);
-          }
-          this.animationFinish = false;
-          let newdata: string[] = _.slice(data,1);
-          console.log("Reponse promise :" + reason);
-          console.log("Nouveau Tableau : ");
-          console.log(newdata);
-          this.displaySentence(newdata, newdata.length > 1 ? true : false);
-        });
-      }
-    }, this.timelaps);
-  }
-
-  private timeout(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
-  private async sleep(fn: Function, ...args: any[]) {
-      await this.timeout(3000);
-      return fn(...args);
-  }
-
-  private makePromise(lambda: Function, ms: number): Promise<boolean> {
-    return new Promise((resolve, reject) => setTimeout(() => {
-        try {
-          lambda();
-          resolve(true);
-        } catch(e) {
-          reject(false);
-        }
-      }, ms));
   }
 }
 </script>
