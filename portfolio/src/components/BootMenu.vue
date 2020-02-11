@@ -7,10 +7,10 @@
     </div>
   </div>
   <div class="colonne">
-    <div class="desktop-selection">
-      <p>Menu de Navigation</p>
+    <div id="desktop-title" class="desktop-selection">
+      <p>Récemment ajoutées</p>
     </div>
-    <div class="desktop-selection">
+    <div class="desktop-selection" v-on:click="redirect('AboutMe')">
       <div class="starting-logo">
         <img alt="Menu"  title="Menu" src="/images/moi2.png" />
       </div>
@@ -18,7 +18,7 @@
         <p>A propos de moi</p>
       </div>
     </div>
-    <div class="desktop-selection">
+    <div class="desktop-selection" v-on:click="redirect('Experiences')">
       <div class="starting-logo">
         <img alt="Menu"  title="Menu" src="/images/icons/work.png" />
       </div>
@@ -26,7 +26,7 @@
         <p>Mes experiences</p>
       </div>
     </div>
-    <div class="desktop-selection">
+    <div class="desktop-selection" v-on:click="redirect('Skills')">
       <div class="starting-logo">
         <img alt="Menu"  title="Menu" src="/images/icons/skills.png" />
       </div>
@@ -93,6 +93,7 @@ import { Language, VisitorType } from '../types/Enum';
 import { launchAndClearInterval } from '@/scripts/Utils/Times';
 import { ShortCutIcon } from "@/types/Interface";
 import Shortcut from "./Shortcut.vue";
+import { redirect } from "@/scripts/Utils/redirect";
 
 @Component({
   components: {
@@ -100,24 +101,11 @@ import Shortcut from "./Shortcut.vue";
 })
 export default class BootMenu extends Vue {
 
+  private redirect: Function = (title: string) => { redirect(title, this); };
+
   @Prop({ required: true }) readonly show!: boolean;
 
-  private redirect(link: string): void {
-    switch(link) {
-      case "linkedin":
-        window.open('https://www.linkedin.com/in/jean-david-nelson/', '_blank');
-        break;
-      case "github":
-        window.open('https://github.com/jdavidnel', '_blank');
-        break;
-      case "home":
-        window.location.href = "http://localhost:8080/";
-        break;
-      default:
-        break;
-    }
-  }
-
+ 
   private setVisitor(type: VisitorType): void {
   }
 }
@@ -126,6 +114,10 @@ export default class BootMenu extends Vue {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 @import '../assets/scss/_typo.scss';
+
+#desktop-title {
+  text-align: left;
+}
 
 .first-colonne {
   margin-right: 15px;
@@ -164,12 +156,12 @@ export default class BootMenu extends Vue {
   .text {
     text-align: center;
     vertical-align: middle;
-    line-height: 45px;
+    line-height: 30px;
   }
 
   .starting-logo {
-    max-width: 50px;
-    background-color: white;
+    max-width: 40px;
+    background-color: #00AAF2;
     img {
       width: 100%;
     }
@@ -179,7 +171,7 @@ export default class BootMenu extends Vue {
 .dropup-content {
   display: none;
   position: absolute;
-  background-color: black;
+  background-color: rgba(31, 54, 65, 0.98);
   min-width: 160px;
   bottom: 65px;
   z-index: 1;
@@ -189,13 +181,12 @@ export default class BootMenu extends Vue {
 .dropup-content .desktop-selection {
   color: white;
   display: flex;
-  font-family: "ubuntu";
   font-size: 15px;
 }
 
 .dropup-content .desktop-selection:hover {
   background: rgba(180, 181, 176, 0.2);
-  border: 0.5px solid #949494;
+  /*border-top: 0.5px solid #949494; */
 }
 
 /* Safari 4.0 - 8.0 */

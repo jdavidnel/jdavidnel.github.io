@@ -1,54 +1,41 @@
 <template>
 <div ref="windowcontent" v-on:click="focusWindow" v-if="visible" v-draggable="draggableValue" class="window-container">
-  <div class="row-custom first-line window-controls-top justify-content-between">
+  <div class="row-custom window-controls-top first-line justify-content-between">
     <div class="windows-icons-top-left windows-icons-top">
-      <img src="../assets/icons/windows/folder.png" />
-      <img src="../assets/icons/windows/file.png" />
-      <img src="../assets/icons/windows/document.png" />
-      <p class="windows-title">{{title}}</p>
+      <img src="../assets/icons/skills/folder.png" />
+      <p class="windows-title">Propriété de: {{title}}</p>
     </div>
     <div class="windows-icons-top-right windows-icons-top">
-      <div v-on:click="reduce()" class="window-controls">
-        <img class="window-hover" src="../assets/icons/windows/line.png" />
-      </div>
-      <div class="window-controls window-hover">
-        <img class="window-hover" src="../assets/icons/windows/square.png" />
-      </div>
       <div v-on:click="close()" class="window-controls  window-hover-close">
         <img class="window-hover-close" src="../assets/icons/windows/closecross.png" />
       </div>
     </div>
   </div>
   <div class="row-custom window-fake-nav window-controls-top justify-content-between">
-    <div class="window-first-link">Fichier</div>
-    <div class="window-navboard">Accueil</div>
-    <div class="window-navboard">Partage</div>
-    <div class="window-navboard">Affichage</div>
+    <div class="window-navboard">General</div>
+    <div class="window-navboard">securité</div>
+    <div class="window-navboard">Details</div>
+    <div class="window-navboard">Version précédentes</div>
   </div>
   <div class="row-custom windows-content">
-    <Skills v-if="check('Skills')"/> 
-    <Experiences v-else-if="check('Experiences')" />
-    <!-- <AboutMe v-if="title === 'AboutMe'" />
-    <Skills v-else-if="title === 'Skills'" /> 
-    <Expertise v-else-if="title === 'Expertise'" />
-    <div v-else>
-      {{title}}
-    </div> -->
+    <div class="row-custom">
+      <AboutMe />
+    </div>
   </div>
 </div>
 </template>
 
 <script lang="ts">
 import * as _ from 'lodash';
-import $ from 'jquery';
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { Language, VisitorType } from '../types/Enum';
 import { launchAndClearInterval } from '@/scripts/Utils/Times';
-import { ShortCutIcon, PortfolioWindowReduced } from "@/types/Interface";
+import { PortfolioWindowPropsReduced } from "@/types/Interface";
 import Shortcut from "./Shortcut.vue";
 import { Skills, AboutMe, Expertise, Experiences } from "./windowContent";
 import { Draggable } from 'draggable-vue-directive';
 import { Guid } from "guid-typescript";
+
 import AWindow from "./AWindow";
 
 @Component({
@@ -62,27 +49,33 @@ import AWindow from "./AWindow";
       Draggable
   }
 })
-export default class Window extends Vue {
+export default class WindowProperties extends Vue {
 
   @Prop({ default: "Explorateur de fichiers" }) readonly title!: string;
   @Prop({ default: () => { return Guid.create();} }) readonly id!: Guid;
 
   public visible: boolean = true;
+
+  private currentTab: any =  'Skills';
+  private tabs:string[] = ['Skills', 'AboutMe', 'Expertise', 'Experiences'];
   public handleId:string = "handle-id";
   public draggableValue: any =  {
       handle: undefined
   };
 
-  //private currentTab: any =  'Skills';
-  //private tabs:string[] = ['Skills', 'AboutMe', 'Expertise', 'Experiences'];
-  private instance: PortfolioWindowReduced = { id: this.id.toString(), instance: this };
+  private instance: PortfolioWindowPropsReduced = { id: this.id.toString(), instance: this };
+
 
   private check: Function = (str: string) => {
-    return (this.title === str);
-  }
+    console.log(`chaine envoyé: ${str}`);
+    return _.find(this.tabs,(item: string) => {
+      return (item === str);
+    });;
+  } 
 
   private focusWindow() {
     this.$emit("Window::Focus::Get",this.instance);
+    this.$root.$emit("test");
   }
   
   public addFocus() {
@@ -102,8 +95,7 @@ export default class Window extends Vue {
   }
 
   public mounted() {
-    console.log("constructeur windows " + this.id.toString());
-    this.visible = true;
+    console.log("constructeur windows");
     this.draggableValue.handle = this.$refs[this.handleId];
   }
 
@@ -123,19 +115,14 @@ export default class Window extends Vue {
     }
   }
 
-  public Open() {
-    this.visible = true;
-  }
-
   private close() {
+    console.log(`Event close windows value : ${this.visible} with indentifiant`);
     this.visible = false;
     this.$emit("Window::Close",this.instance);
-    //this.$destroy();
+    console.log(`apres event close windows value : ${this.visible} with indentifiant`);
   }
 
-  private reduce() {
-    this.$emit("Window::Reduce", this.instance);
-    this.visible = false;
+  private setVisitor(type: VisitorType): void {
   }
 }
 </script>
@@ -149,25 +136,38 @@ export default class Window extends Vue {
   color: white;
 }
 
-.window-navboard:hover {
-  border: 1px solid #c9c9c9;
-}
-
-.first-line {
-  margin-bottom: 10px;
+.window-navboard:first-of-type {
+  border-top: 1px solid #c9c9c9;
+  border-left: 1px solid #c9c9c9;
+  border-right: 1px solid #c9c9c9;
+  border-bottom: none;
+  background-color: white;
 }
 
 .focus-on {
   z-index: 2000;
 }
 
+.window-navboard:not(:first-of-type):hover {
+  background-color: #D1E8F3;
+}
+
+.window-navboard {
+  border-top: 1px solid #c9c9c9;
+  border-right: 1px solid #c9c9c9;
+  border-bottom: 1px solid #c9c9c9;
+}
+
 .window-fake-nav {
+  margin: 0px 10px;
+  background-color: #efefef;
   div {
     display: inline;
-    padding: 10px;
+    padding: 5px;
+    font-size: 10px;
   }
   text-align: left;
-  border-bottom: 1px solid #c9c9c9;
+  /*border-bottom: 1px solid #c9c9c9;*/
   font-size: 15px;
 }
 
@@ -184,17 +184,24 @@ export default class Window extends Vue {
 }
 
 .windows-content {
-  height: 630px;
+  height: calc(100% - 20%);
+  background-color: #ffffff;
+  margin: 0 10px;
 }
 
 .window-controls-top {
-  height: 30px;
+  height: 25px;
 }
 
-.window-container {
-  width: 1200px;
-  height: 700px;
+.first-line {
+  margin-bottom: 10px;
   background-color: white;
+  height: 30px;
+}
+.window-container {
+  width: 500px;
+  height: 600px;
+  background-color: #efefef;
   position: absolute;
   color: black;
   overflow: hidden;
@@ -222,6 +229,7 @@ export default class Window extends Vue {
     width: 100%;
     max-width: 20px;
     display: inline;
+    margin-right: 10px;
   }
 }
 
@@ -245,6 +253,7 @@ export default class Window extends Vue {
   img {
     max-width: 30px;
     padding: 10px;
+    margin: 0;
   }
 
   .window-hover img:hover {
@@ -253,4 +262,10 @@ export default class Window extends Vue {
   
 }
 
+.logo {
+  max-width: 45px;
+  img {
+    width: 100%
+  }
+}
 </style>

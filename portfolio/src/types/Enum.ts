@@ -9,7 +9,16 @@ enum VisitorType {
   None = 3,
 }
 
+enum WindowState {
+  REDUCED,
+  CLOSED,
+  FOCUS,
+  BACKGROUND,
+  OPENED,
+}
+
 export {
   Language,
   VisitorType,
+  WindowState,
 };

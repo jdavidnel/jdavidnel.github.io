@@ -123,10 +123,10 @@ h1 {
   text-align: left;
   font-size: 20px;
   color: #A9A9A9;
-  font-family: "ubuntu";
 }
 h1::after{
   content: '_';
+  font-family: "ubuntu";
   color: white;
   font-weight: bold;
   -webkit-animation: blindspot 0.5s infinite; /* Safari 4.0 - 8.0 */

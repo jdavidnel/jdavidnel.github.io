@@ -10,11 +10,7 @@
                   <span class="heading-meta">A propos</span>
                   <h2 class="colorlib-heading">Qui suis je ?</h2>
                   <p><strong>Bonjour, je suis jean-David Nelson</strong>. Porté sur le développement Mobile, d'application ou web.
-                  je suis passionné par toutes les domaines.
-                  Porté sur le développement Mobile, d'application ou web. je suis passionné par toutes les domaines.
-                  Porté sur le développement Mobile, d'application ou web. je suis passionné par toutes les domaines.
-                  Porté sur le développement Mobile, d'application ou web. je suis passionné par toutes les domaines.
-                  Porté sur le développement Mobile, d'application ou web. je suis passionné par toutes les domaines.</p>
+                  je suis passionné par toutes les domaines portant sur l'informatique. Ce site me sert a exposer mes differentes connaissances sur le sujet, mais ausi a vous permettre de mieux me connaitre pour une eventuel collaboration.</p>
                   <p>Ayant été formé a devenir expert dans tout les domaine de l'informatique , mes compétences s'étendent sur plusieurs domaines d'activités : </p>
                 </div>
               </div>
@@ -65,7 +61,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import $ from 'jquery';
 
 @Component
-export default class AboutMe extends Vue {
+export default class Degree extends Vue {
   public mounted() {
   }
 }

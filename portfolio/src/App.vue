@@ -5,7 +5,8 @@
     <Navbar v-if="makedecision" />
     <MainDecision v-if="!makedecision"/>
     <MainApp v-else /> -->
-    <Cli v-if="animation" /> 
+    <Authentification v-if="animation" />
+    <!-- <Cli v-if="animation" />  -->
     <Kernel v-else />
 
   </div>
@@ -18,6 +19,7 @@ import Navbar from './components/Navbar.vue';
 import MainApp from './components/MainApp.vue';
 import MainDecision from '@/components/MainDecision.vue';
 import Cli from '@/components/Cli.vue';
+import Authentification from '@/components/Authentification.vue';
 import Kernel from '@/components/Kernel.vue';
 import { VisitorType } from '@/types/Enum';
 import $ from 'jquery';
@@ -26,6 +28,7 @@ import $ from 'jquery';
   components: {
     Cli,
     Kernel,
+    Authentification,
   },
 })
 export default class App extends Vue {
@@ -38,7 +41,7 @@ export default class App extends Vue {
       $("body").css({ 'background-color': 'black' });
       $("body").css('background-image', 'none');
       this.$root.$emit("App::Animation::End");
-    }, 3000);
+    }, 1000);
 
     this.$root.$on('TypeWritter::Animation::End', () => {
       this.animation = false;

@@ -1,6 +1,6 @@
 <template>
   <div class="icons-Desktop">
-    <div class="raccourcis" v-bind:style="{ backgroundColor: data.color }" >
+    <div class="raccourcis" >
       <img 
       v-bind:alt="data.name"
       v-bind:title="data.name" 
@@ -27,7 +27,6 @@ export default class Shortcut extends Vue {
   
 
   public mounted() {
-    console.log(this.data);
   }
 
 }
@@ -42,7 +41,6 @@ export default class Shortcut extends Vue {
   max-width: 90px;
   text-align: center;
   font-size: 15px;
-  font-family: "ubuntu";
 }
 
 .icons-Desktop:hover {
@@ -54,7 +52,6 @@ export default class Shortcut extends Vue {
 }
 .raccourcis {
   max-width: 100px;
-  background-color: rgb(22, 63, 65);
   padding: 15px;
   border-radius: 50px;
   img {
