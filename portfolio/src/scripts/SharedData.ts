@@ -3,8 +3,8 @@ import { PortfolioWindow, PortfolioWindowReduced } from '@/types/Interface';
 
 export const serverBus = new Vue();
 
-let windowsReduced: PortfolioWindowReduced[] = [];
+const windowsReduced: PortfolioWindowReduced[] = [];
 
 export {
-    windowsReduced
-}
+  windowsReduced,
+};

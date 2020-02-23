@@ -1,53 +1,58 @@
 <template>
   <div id="app">
-    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/> 
-    <Navbar v-if="makedecision" />
-    <MainDecision v-if="!makedecision"/>
-    <MainApp v-else /> -->
-    <Authentification v-if="animation" />
-    <!-- <Cli v-if="animation" />  -->
+    <Authentification v-if="currentState === 'AUTHENTIFICATION'" />
+    <MobileGesture v-else-if="currentState === 'ANDROID'" />
     <Kernel v-else />
-
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from './components/HelloWorld.vue';
-import Navbar from './components/Navbar.vue';
-import MainApp from './components/MainApp.vue';
-import MainDecision from '@/components/MainDecision.vue';
-import Cli from '@/components/Cli.vue';
-import Authentification from '@/components/Authentification.vue';
-import Kernel from '@/components/Kernel.vue';
-import { VisitorType } from '@/types/Enum';
+
 import $ from 'jquery';
+
+import Authentification from '@/components/desktop/Authentification.vue';
+import Kernel from '@/components/desktop/Kernel.vue';
+import MobileGesture from '@/components/mobile/MobileGesture.vue';
+
+import { mobileAndTabletcheck } from '@/scripts/Utils/Utils';
 
 @Component({
   components: {
-    Cli,
     Kernel,
     Authentification,
+    MobileGesture,
   },
 })
 export default class App extends Vue {
-
   private animation: boolean = true;
 
-  public mounted() {
+  private currentState: string = "AUTHENTIFICATION";
 
-    setTimeout(() => { 
-      $("body").css({ 'background-color': 'black' });
-      $("body").css('background-image', 'none');
-      this.$root.$emit("App::Animation::End");
-    }, 1000);
+  private checkStr(str: string) {
+
+  }
+
+  public mounted() {
+    if (mobileAndTabletcheck()) {
+      this.currentState = "ANDROID";
+      $('body').toggleClass('android-boot');
+    } else {
+      $('body').toggleClass('window-boot');
+    }
+
+    setTimeout(() => {
+      $('body').css({ 'background-color': 'black' });
+      $('body').css('background-image', 'none');
+      this.$root.$emit('App::Animation::End');
+    }, 2000);
 
     this.$root.$on('TypeWritter::Animation::End', () => {
       this.animation = false;
-      $("body").removeAttr('style');
-      $("body").addClass("wallpaper-bg");
-      $("#app").css({ 'background-color': 'transparent' });
+      this.currentState = "KERNEL";
+      $('body').removeAttr('style');
+      $('body').addClass('wallpaper-bg');
+      $('#app').css({ 'background-color': 'transparent' });
     });
   }
 }
@@ -78,9 +83,18 @@ body {
   width: 100%;
 }
 
-body {
-  background: no-repeat center url("./assets/bootloader.gif");
+.android-boot {
+  background: no-repeat center url("./assets/android_boot.gif");
   background-size: cover;
+}
+
+.window-boot {
+  background: no-repeat center url("./assets/windows_boot.gif");
+  background-size: cover;
+}
+
+body {
+    background-size: cover;
 }
 
 .wallpaper-bg {

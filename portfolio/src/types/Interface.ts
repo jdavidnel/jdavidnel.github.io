@@ -1,15 +1,15 @@
 import Vue from 'vue';
-import { Guid } from "guid-typescript";
-import { WindowState } from './Enum';
-import AWindow from "../components/AWindow";
-import Window from "../components/Window.vue";
-import WindowProperties from "../components/WindowProperties.vue";
+import { Guid } from 'guid-typescript';
+
+import { WindowState } from '@/types/Enum';
+import Window from '@/components/desktop/Window.vue';
+import WindowProperties from '@/components/desktop/WindowProperties.vue';
 
 export interface ShortCutIcon {
     name: string;
     link: string;
     color: string;
-};
+}
 
 
 export interface SlotItem {

@@ -1,51 +1,52 @@
-import { PortfolioWindow, PortfolioWindowProps } from "../../types/Interface";
-import Window from "../../components/Window.vue";
-import WindowProperties from "../../components/WindowProperties.vue";
+
 import Vue, { VNode } from 'vue';
-import { Guid } from "guid-typescript";
+import { Guid } from 'guid-typescript';
+import { PortfolioWindow, PortfolioWindowProps } from '@/types/Interface';
 import { WindowState } from '@/types/Enum';
 
+import Window from '@/components/desktop/Window.vue';
+import WindowProperties from '@/components/desktop/WindowProperties.vue';
 
 
 function createWindow(title: string, Component: Vue) : PortfolioWindow {
-    //let ComponentWindow = Vue.extend(WindowJS);
-    let id: Guid = Guid.create();
+  // let ComponentWindow = Vue.extend(WindowJS);
+  const id: Guid = Guid.create();
 
-    let instance = new Window({
-        propsData: { title: title, id: id }
-    });
-    instance.$mount(); // pass nothing
-    let data: PortfolioWindow = {
-        id: id,
-        instance: instance,
-        title: title,
-        state: WindowState.OPENED
-    }
-    //Component.$mount();
-    return data;
+  const instance = new Window({
+    propsData: { title, id },
+  });
+  instance.$mount(); // pass nothing
+  const data: PortfolioWindow = {
+    id,
+    instance,
+    title,
+    state: WindowState.OPENED,
+  };
+  // Component.$mount();
+  return data;
 }
 
 
 function createWindowProps(title: string) : PortfolioWindowProps {
-    //let ComponentWindow = Vue.extend(WindowJS);
-    let id: Guid = Guid.create();
+  // let ComponentWindow = Vue.extend(WindowJS);
+  const id: Guid = Guid.create();
 
-    let instance = new WindowProperties({
-        propsData: { title: title, id: id }
-    });
-    instance.$mount(); // pass nothing
-    let data: PortfolioWindowProps = {
-        id: id,
-        instance: instance,
-        title: title,
-        state: WindowState.OPENED
-    }
-    //Component.$mount();
-    return data;
+  const instance = new WindowProperties({
+    propsData: { title, id },
+  });
+  instance.$mount(); // pass nothing
+  const data: PortfolioWindowProps = {
+    id,
+    instance,
+    title,
+    state: WindowState.OPENED,
+  };
+  // Component.$mount();
+  return data;
 }
 
 
 export {
-    createWindow,
-    createWindowProps,
-}
+  createWindow,
+  createWindowProps,
+};
