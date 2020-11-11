@@ -13,8 +13,7 @@ import {
 import $ from 'jquery';
 import LockedScreen from './screens/LockedScreen.vue';
 import HomeScreen from './screens/HomeScreen.vue';
-import { Language, VisitorType } from '@/types/Enum';
-import { launchAndClearInterval } from '@/scripts/Utils/Times';
+import { Language, VisitorType } from '../../types/Enum';
 
 @Component({
   components: {
@@ -60,8 +59,8 @@ body {
   height: 100%;
   overflow: hidden;
   margin: auto;
-  /* background: no-repeat center url("../../assets/wallpaper_auth.jpg"); */
-  display: table;
+  /* background: no-repeat center url("../../assets/wallpaper_auth.jpg"); 
+  display: table; */
 }
 
 .blur-it {

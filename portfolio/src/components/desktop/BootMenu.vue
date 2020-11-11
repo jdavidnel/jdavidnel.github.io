@@ -91,11 +91,10 @@ import * as _ from 'lodash';
 import {
   Component, Prop, Vue, Watch,
 } from 'vue-property-decorator';
-import { Language, VisitorType } from '@/types/Enum';
-import { launchAndClearInterval } from '@/scripts/Utils/Times';
-import { ShortCutIcon } from '@/types/Interface';
+import { Language, VisitorType } from '../../types/Enum';
+import { ShortCutIcon } from '../../types/Interface';
 import Shortcut from './Shortcut.vue';
-import { redirect } from '@/scripts/Utils/redirect';
+import { redirect } from '../../scripts/utils/redirect';
 
 @Component({
   components: {

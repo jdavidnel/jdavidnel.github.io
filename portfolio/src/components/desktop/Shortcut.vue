@@ -1,5 +1,5 @@
 <template>
-  <div class="icons-Desktop" v-on:click="redirect(data.name)">
+  <div class="icons-Desktop" v-on:dblclick="redirect(data.name)">
     <div class="raccourcis" >
       <img
       v-bind:alt="data.name"
@@ -15,8 +15,8 @@
 <script lang="ts">
 import * as _ from 'lodash';
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { ShortCutIcon } from '@/types/Interface';
-import { redirect } from '@/scripts/Utils/redirect';
+import { ShortCutIcon } from '../../types/Interface';
+import { redirect } from '../../scripts/utils/redirect';
 
 @Component({
   components: {

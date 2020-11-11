@@ -33,7 +33,7 @@
         <span>Age :</span>
       </div>
       <div class="col-md-8">
-        <span>25 ans</span>
+        <span>26 ans</span>
       </div>
     </div>
     <div class="row-content row">
@@ -61,7 +61,7 @@
         <span>Description :</span>
       </div>
       <div class="padr30 col-md-8">
-        <span>Formé à devenir expert et à performer dans tout les domaine de l'informatique , mes compétences s'étendent sur plusieurs domaines d'activités ( Cliquez sur l'icone "Compétences" pour pouvoir les vizualiser ) tel que le développement de client lourd, d'application mobile ou web. Ce site me sert à exposer mes différentes connaissances dans le domaine informatique, mais aussi de vous permettre de mieux me connaitre pour une éventuelle collaboration.</span>
+        <span>Formé à devenir expert et à performer dans tout les domaines de l'informatique ,mes compétences s'étendent sur plusieurs domaines d'activités ( Cliquez sur l'icône "Compétences" pour pouvoir les visualiser ) tel que le développement de client lourd, d'application mobile ou web. Ce site me sert à exposer mes différentes connaissances dans le domaine informatique, mais aussi de vous permettre de mieux me connaitre pour une éventuelle collaboration.</span>
       </div>
     </div>
   </div>

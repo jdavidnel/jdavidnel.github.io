@@ -110,9 +110,9 @@
         <div class="col-md-3">
           <div class="normal-details">
             <div class="details-file details-title">
-              <span class="badge badge-pill badge-primary">C#</span>
-              <span class="badge badge-pill badge-secondary">JS</span>
-              <span class="badge badge-pill badge-success">VueJS</span>
+              <span class="badge badge-pill badge-primary">ASP.Net</span>
+              <span class="badge badge-pill badge-secondary">JQuery</span>
+              <span class="badge badge-pill badge-secondary">VueJS</span>
               <span class="badge badge-pill badge-success">Architecture</span>
             </div>
           </div>
@@ -123,71 +123,38 @@
       <div class="section-title">
         <span>Stage (3)</span>
       </div>
-      <!-- <div class="row content-full">
+      <div class="row content-full">
         <div class="col-md-3 storage-device">
           <div class="logo">
-            <img src="@/assets/icons/highco.png" />
+            <img src="@/assets/icons/soprasteria.jpg" />
           </div>
           <div class="normal-details">
-            <span class="details-title">Développeur full stack</span>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="normal-details">
-            <span class="details-title">High Co Box</span>
+            <span class="details-title">Ingénieur Conception & développement</span>
           </div>
         </div>
         <div class="col-md-2">
           <div class="normal-details">
-            <span class="details-title">01/01/2012</span>
+            <span class="details-title">Sopra Steria</span>
           </div>
         </div>
         <div class="col-md-2">
           <div class="normal-details">
-            <span class="details-title">01/01/2018</span>
+            <span class="details-title">08/06/2020</span>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="normal-details">
+            <span class="details-title">13/11/2020</span>
           </div>
         </div>
         <div class="col-md-3">
           <div class="normal-details">
             <div class="details-title">
-              <span class="badge badge-pill badge-primary">Primary</span>
-              <span class="badge badge-pill badge-secondary">Secondary</span>
-              <span class="badge badge-pill badge-success">Success</span>
-            </div>
-          </div>
-        </div>
-      </div> -->
-      <div class="row content-full">
-        <div class="col-md-3 storage-device">
-          <div class="logo">
-            <img src="@/assets/icons/paris8.png" />
-          </div>
-          <div class="normal-details">
-            <span class="details-title">Développeur Back-End</span>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="normal-details">
-            <span class="details-file details-title">Laboratoire de recherche Université Paris 8</span>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="normal-details">
-            <span class="details-file details-title">01/01/2012</span>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="normal-details">
-            <span class="details-file details-title">01/01/2018</span>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="normal-details">
-            <div class="details-file details-title">
-              <span class="badge badge-pill badge-primary">Unity3D</span>
-              <span class="badge badge-pill badge-secondary">C#</span>
-              <span class="badge badge-pill badge-success">CSS</span>
-              <span class="badge badge-pill badge-success">BLENDER</span>
+              <span class="badge badge-pill badge-primary">ASP.Net</span>
+              <span class="badge badge-pill badge-primary">ASP Core</span>
+              <span class="badge badge-pill badge-success">Angular 9</span>
+              <span class="badge badge-pill badge-success">Java</span>
+              <span class="badge badge-pill badge-secondary">Architecture</span>
             </div>
           </div>
         </div>
@@ -223,6 +190,41 @@
               <span class="badge badge-pill badge-secondary">Microsoft Azure</span>
               <span class="badge badge-pill badge-success">SQL</span>
               <span class="badge badge-pill badge-success">NOSQL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row content-full">
+        <div class="col-md-3 storage-device">
+          <div class="logo">
+            <img src="@/assets/icons/paris8.png" />
+          </div>
+          <div class="normal-details">
+            <span class="details-title">Développeur Back-End</span>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="normal-details">
+            <span class="details-file details-title">Laboratoire de recherche Université Paris 8</span>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="normal-details">
+            <span class="details-file details-title">01/01/2012</span>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="normal-details">
+            <span class="details-file details-title">01/01/2018</span>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="normal-details">
+            <div class="details-file details-title">
+              <span class="badge badge-pill badge-primary">Unity3D</span>
+              <span class="badge badge-pill badge-secondary">C#</span>
+              <span class="badge badge-pill badge-success">CSS</span>
+              <span class="badge badge-pill badge-success">BLENDER</span>
             </div>
           </div>
         </div>

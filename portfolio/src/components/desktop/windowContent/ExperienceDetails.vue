@@ -66,9 +66,7 @@ export default class ExperienceDetails extends Vue {
   private dataExperience: Map<WorkExperience, string> = new Map();
   private experienceSpeech: string[] = [
     "Dans le cadre d'un stage en conception et développement, j'accompagne la societé Alteva dans toutes les étapes de création d'un ETL modulaire (Extraxt-Transform-Load) de la conception au developpement, sur plusieurs problématiques telles que celles liées aux coûts, et à la perfomance du programme (transfert de données dans un service tiers de cloud).",
-    "Dans le cadre d'un stage,j'ai intégré l'équipe de recherche Paragraphe de l'université PARIS 8 et travailler sur plusieurs projets transversaux pour la bibliotheque nation de france. j'ai pu participer a la réalisation du projet \"Theatromania\", une application de réalité augmenté permettant de visiter et rédécouvrir la bibliotheque national de france."
-    ""
-  ];
+    "Dans le cadre d'un stage,j'ai intégré l'équipe de recherche Paragraphe de l'université PARIS 8 et travailler sur plusieurs projets transversaux pour la bibliotheque nation de france. j'ai pu participer a la réalisation du projet \"Theatromania\", une application de réalité augmenté permettant de visiter et rédécouvrir la bibliotheque national de france."  ];
   @Prop({ required: true }) readonly experience!: string;
 
   private initFlag() {

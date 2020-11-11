@@ -31,9 +31,7 @@ import {
   Component, Prop, Vue, Watch,
 } from 'vue-property-decorator';
 
-import { Language, VisitorType } from '@/types/Enum';
-
-import { launchAndClearInterval } from '@/scripts/Utils/Times';
+import { Language, VisitorType } from '../../types/Enum';
 
 @Component({
   components: {

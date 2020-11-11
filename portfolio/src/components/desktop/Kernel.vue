@@ -56,18 +56,18 @@ import {
   Component, Prop, Vue, Watch,
 } from 'vue-property-decorator';
 import { Guid } from 'guid-typescript';
-import { Language, VisitorType, WindowState } from '@/types/Enum';
-import { launchAndClearInterval } from '@/scripts/Utils/Times';
+import { Language, VisitorType, WindowState } from '../../types/Enum';
+import { launchAndClearInterval } from '../../scripts/utils/Times';
 import {
   ShortCutIcon, SlotItem, PortfolioWindow, PortfolioWindowReduced, PortfolioWindowProps, PortfolioWindowPropsReduced,
-} from '@/types/Interface';
+} from '../../types/Interface';
 import Shortcut from './Shortcut.vue';
 import BootMenu from './BootMenu.vue';
 import Window from './Window.vue';
-import { createWindow, createWindowProps } from '@/scripts/Utils/WindowsCreator';
+import { createWindow, createWindowProps } from '../../scripts/utils/WindowsCreator';
 
 import WindowProperties from './WindowProperties.vue';
-import { redirect } from '@/scripts/Utils/redirect';
+import { redirect } from '../../scripts/utils/redirect';
 
 @Component({
   components: {
@@ -191,10 +191,11 @@ export default class Kernel extends Vue {
   private FocusManagementWindow(id: string) {
     this.windowsProps.forEach((value:PortfolioWindowProps, key: string, map: Map<string, PortfolioWindowProps>) => {
       console.log(`(key : ${key}) == (id : ${id})`);
+      
       if (key === id) {
-        value.instance.addFocus();
+        //value.instance.addFocus();
       } else if (!_.isNil(value.instance)) {
-        value.instance.removeFocus();
+        //value.instance.removeFocus();
       } else {
         console.log(value);
       }
@@ -202,9 +203,9 @@ export default class Kernel extends Vue {
 
     this.windows.forEach((value:PortfolioWindow, key: string, map: Map<string, PortfolioWindow>) => {
       if (key === id) {
-        value.instance.addFocus();
+        //value.instance.addFocus();
       } else if (!_.isNil(value.instance)) {
-        value.instance.removeFocus();
+        //value.instance.removeFocus();
       } else {
         console.log(value);
       }
@@ -225,7 +226,7 @@ export default class Kernel extends Vue {
     fakeWindow.state = WindowState.OPENED;
     this.windows.delete(id);
     this.windows.set(id, fakeWindow);
-    fakeWindow.instance.Open();
+    //fakeWindow.instance.Open();
   }
 
   private setVisitor(type: VisitorType): void {

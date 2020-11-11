@@ -4,7 +4,7 @@ import { Guid } from 'guid-typescript';
 import { PortfolioWindow, PortfolioWindowProps } from '@/types/Interface';
 import { WindowState } from '@/types/Enum';
 
-import Window from '@/components/desktop/Window.vue';
+import WindowCustom from '@/components/desktop/Window.vue';
 import WindowProperties from '@/components/desktop/WindowProperties.vue';
 
 
@@ -12,7 +12,7 @@ function createWindow(title: string, Component: Vue) : PortfolioWindow {
   // let ComponentWindow = Vue.extend(WindowJS);
   const id: Guid = Guid.create();
 
-  const instance = new Window({
+  const instance = new WindowCustom({
     propsData: { title, id },
   });
   instance.$mount(); // pass nothing

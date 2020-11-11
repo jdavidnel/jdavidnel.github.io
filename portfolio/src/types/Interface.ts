@@ -2,7 +2,7 @@ import Vue from 'vue';
 import { Guid } from 'guid-typescript';
 
 import { WindowState } from '@/types/Enum';
-import Window from '@/components/desktop/Window.vue';
+import WindowCustom from '@/components/desktop/Window.vue';
 import WindowProperties from '@/components/desktop/WindowProperties.vue';
 
 export interface ShortCutIcon {
@@ -19,7 +19,7 @@ export interface SlotItem {
 
 export interface PortfolioWindow {
     id: Guid;
-    instance: Window;
+    instance: WindowCustom;
     title: string;
     state: WindowState;
 }
@@ -33,7 +33,7 @@ export interface PortfolioWindowProps {
 
 export interface PortfolioWindowReduced {
     id: string;
-    instance: Window;
+    instance: WindowCustom;
 }
 
 export interface PortfolioWindowPropsReduced {

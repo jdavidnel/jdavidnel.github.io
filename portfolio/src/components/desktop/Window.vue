@@ -48,15 +48,13 @@ import {
 import { Draggable } from 'draggable-vue-directive';
 import { Guid } from 'guid-typescript';
 
-import { Language, VisitorType } from '@/types/Enum';
-import { ShortCutIcon, PortfolioWindowReduced } from '@/types/Interface';
+import { Language, VisitorType } from '../../types/Enum';
+import { ShortCutIcon, PortfolioWindowReduced } from '../../types/Interface';
 
 import Shortcut from './Shortcut.vue';
 import {
   Skills, AboutMe, Expertise, Experiences, Degree,
 } from './windowContent';
-
-import { launchAndClearInterval } from '@/scripts/Utils/Times';
 
 @Component({
   components: {

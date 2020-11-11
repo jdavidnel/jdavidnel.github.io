@@ -1,5 +1,5 @@
 <template>
-  <div v-touch:swipe="handlerSwipe" v-touch:touch="handlerSwipe" class="window" v-show="this.start">
+  <div v-touch:swipe="handlerSwipe" v-touch:tap="handlerSwipe" class="window" v-show="this.start">
     <StateBar />
     <div class="display-date">
         <section>
@@ -17,8 +17,9 @@ import {
 } from 'vue-property-decorator';
 import $ from 'jquery';
 import StateBar from '@/components/mobile/basics/StateBar.vue';
-import { Language, VisitorType } from '@/types/Enum';
-import { launchAndClearInterval } from '@/scripts/Utils/Times';
+import { Language, VisitorType } from '../../../types/Enum';
+import { WindowState } from '../../../types/Enum';
+
 
 @Component({
   components: {
@@ -43,8 +44,8 @@ export default class LockedScreen extends Vue {
     private visitor: VisitorType = VisitorType.None;
 
     private handlerSwipe (direction: any) {
-      alert("Swiped !");
-      this.$root.$emit("LockedScreen::Unlock");
+      alert("La version mobile n'est pas encore implémenté merci de revenir ulterieurement ou d'ouvrir le site sur votre ordinateur.");
+      //this.$root.$emit("LockedScreen::Unlock");
     }
 
     public getDate() : string {
@@ -53,7 +54,7 @@ export default class LockedScreen extends Vue {
 
     public getHours() : string {
       const pad:Function = (nbr: number) => ((nbr < 10) ? `0${nbr}` : `${nbr}`);
-      return `${this.today.getHours()}:${pad(this.today.getDate())}`;
+      return `${pad(this.today.getHours())}:${pad(this.today.getDate())}`;
     }
 
     private logUser() {
@@ -99,7 +100,7 @@ body {
   height: 100%;
   overflow: hidden;
   margin: auto;
-  background: no-repeat center url("../../../assets/wallpaper_auth.jpg");
+  background: no-repeat center url("../../../assets/wallpaper_lockscreen.jpg");
   display: table;
 }
 
@@ -112,22 +113,23 @@ body {
   position: fixed;
   bottom: 0;
   width: 100%;
+  font-style: normal;
+  font-family: "Courier New";
+  section {
+      text-align: left;
+      padding: 2%;
 
-    section {
-        text-align: left;
-        padding: 2%;
+      span:nth-of-type(1) {
+          font-size: 7.5rem;
+      }
+      span:nth-of-type(2) {
+          font-size: 2em;
+      }
+  }
 
-        span:nth-of-type(1) {
-            font-size: 7.5rem;
-        }
-        span:nth-of-type(2) {
-            font-size: 2em;
-        }
-    }
-
-    span {
-        display: block;
-    }
+  span {
+      display: block;
+  }
 }
 
 .no-blured-content {

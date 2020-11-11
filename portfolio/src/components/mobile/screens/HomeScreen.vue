@@ -1,18 +1,30 @@
 <template>
   <div class="window">
-    <StateBar />
+    <!-- <div class="System-navbar-app">
+      <StateBar />
+    </div> 
     <div class="full-content">
+      test de foulek
     </div>
-    <!--<div class="down-navbar-app">
+    <div class="down-navbar-app">
       <img src="@/assets/icons/android/message.png" />
       <img src="@/assets/icons/android/call.png" />
       <img src="@/assets/icons/android/contact.png" />
       <img src="@/assets/icons/android/linkedin.png" />
-    </div>-->
+    </div>
     <div class="down-navbar-app">
       <img src="@/assets/icons/android/system/triangle.png" />
       <img src="@/assets/icons/android/system/circle.png" />
       <img src="@/assets/icons/android/system/square.png" />
+    </div> -->
+    <div class="top-align">
+      <div> test 1 </div>
+    </div>
+    <div class="center-align">
+      <div> test 2 </div>
+    </div>
+    <div class="bottom-align">
+      <div> test 3 </div>
     </div>
   </div>
 </template>
@@ -24,8 +36,7 @@ import {
 } from 'vue-property-decorator';
 import $ from 'jquery';
 import StateBar from '@/components/mobile/basics/StateBar.vue';
-import { Language, VisitorType } from '@/types/Enum';
-import { launchAndClearInterval } from '@/scripts/Utils/Times';
+import { Language, VisitorType } from '../../../types/Enum';
 
 @Component({
   components: {
@@ -47,6 +58,23 @@ export default class HomeScreen extends Vue {
 #app {
   display: table-cell;
   vertical-align: middle;
+}
+
+.top-align {
+  display: table-cell;
+  vertical-align: top;
+  text-align: center;
+}
+
+.center-align {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.bottom-align {
+  display: table-cell;
+  vertical-align: bottom;
   text-align: center;
 }
 

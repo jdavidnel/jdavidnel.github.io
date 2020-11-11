@@ -15,7 +15,7 @@ import Authentification from '@/components/desktop/Authentification.vue';
 import Kernel from '@/components/desktop/Kernel.vue';
 import MobileGesture from '@/components/mobile/MobileGesture.vue';
 
-import { mobileAndTabletcheck } from '@/scripts/Utils/Utils';
+import { mobileAndTabletcheck } from './scripts/utils/Utils';
 
 @Component({
   components: {
@@ -37,6 +37,7 @@ export default class App extends Vue {
     if (mobileAndTabletcheck()) {
       this.currentState = "ANDROID";
       $('body').toggleClass('android-boot');
+      console.log("Mobile detected !");
     } else {
       $('body').toggleClass('window-boot');
     }

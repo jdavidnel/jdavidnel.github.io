@@ -1,24 +1,22 @@
 <template>
   <div class="system-navbar">
-    <div class="system-content">
-        <div>
-            <div>
-                <span>Bouygues Telecom</span>
-            </div>
-            <div class="icons">
-                <img src="@/assets/icons/android/system/wifi.png" alt="wifi"/>
-            </div>
+    <div class="right">
+        <div class="pourcentage">
+            <span>61%</span>
         </div>
-        <div class="battery">
-            <div class="pourcentage">
-                <span>21%</span>
-            </div>
-            <div class="icons">
-                <img src="@/assets/icons/android/system/battery.png" alt="battery"/>
-            </div>
+        <div class="icons">
+            <img src="@/assets/icons/android/system/battery2.png" alt="battery"/>
         </div>
-        <!-- <span v-if="state === MobileState.HOMESCREEN">{{hours}}</span> -->
     </div>
+    <div class="left">
+        <div class="operator">
+            <span>Bouygues Telecom</span>
+        </div>
+        <div class="icons">
+            <img src="@/assets/icons/android/system/wifi.png" alt="wifi"/>
+        </div>
+    </div>
+    <!-- <span v-if="state === MobileState.HOMESCREEN">{{hours}}</span> -->
   </div>
 </template>
 
@@ -28,8 +26,7 @@ import {
   Component, Prop, Vue, Watch,
 } from 'vue-property-decorator';
 import $ from 'jquery';
-import { MobileState } from '@/types/Enum/index';
-import { launchAndClearInterval } from '@/scripts/Utils/Times';
+import { MobileState } from '../../../types/Enum/index';
 
 @Component({
   components: {
@@ -63,40 +60,43 @@ export default class StateBar extends Vue {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .system-navbar {
-    overflow: hidden;
-    position: fixed;
-    top: 0;
     width: 100%;
+    padding: 5px 5px;
 }
 
-.system-content {
-    display: inline;
-    /*display: inline-flex;
-    align-items: center;*/
+.right {
+  float: right;
+  display: inline-flex;
+  .pourcentage {
+      font-size: 1.3rem;
+  }
+  .icons {
+      max-width: 30px;
+      margin: 0px 5px;
+      img  {
+          width: 100%;
+      }
+  }
 }
 
-.battery {
-    /* display: inline-flex; */
-    float: right;
-    padding: 5px;
-    .pourcentage {
-        font-size: 1.5rem;
-    }
-    .icons {
-        max-width: 8%;
-        margin: 0px 5px;
-        img  {
-            width: 100%;
-        }
-    }
+.left {
+  float: left;
+  display: inline-flex;
+  .operator {
+    font-size: 1.3rem;
+  }
+  .icons {
+    margin: 0px 5px;
+    /*padding-top: 2px; */
+  }
 }
 
 .icons {
-    max-width: 15px;
+  max-width: 15px;
 
-    img  {
-        width: 100%;
-    }
+  img  {
+      width: 100%;
   }
+}
 
 </style>
